@@ -47,9 +47,14 @@
                 // 类型  input textarea
                 let { type, name, value, format } = item;
                 if (format) value = format(value);
-                html.push('</tr>')
-                html.push(this.template(type, name, value));
-                html.push('</tr>')
+                if (index % 2) {
+                    // 奇数
+                    html.push(this.template(type, name, value));
+                    html.push('</tr>')
+                } else {
+                    html.push('</tr>')
+                    html.push(this.template(type, name, value));
+                }
             });
             html.push("</tr>");
             html.push("</table>");
@@ -95,7 +100,7 @@
     if (!window.toast) {
         window.toast = {};
     }
-    window.toast.detail = function (config) {
+    window.toast.detail = function(config) {
         return new Detail(config);
-    }
+    } 
 })(window)
